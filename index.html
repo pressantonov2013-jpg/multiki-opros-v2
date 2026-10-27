@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Мультфильмы глазами учителей</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;800;900&family=Caveat:wght@600;700&family=Oswald:wght@600;700&family=Manrope:wght@500;700;800&display=swap">
+<style>
+/* Layout: three purple compositions of one first screen, no theme switching.
+   A, "Доска объявлений": plum felt board in a staff room, paper cut-out letters, pinned cards, tear-off calendar leaf.
+   B, "Фестиваль": flat cobalt poster, giant condensed type, rotating date badge, scrolling ticker, numbered rows. */
+:root {
+  color-scheme: light;
+  --jag: polygon(0% 6%, 5% 0%, 11% 7%, 17% 1%, 24% 6%, 31% 0%, 38% 7%, 45% 1%, 52% 6%, 59% 0%, 66% 7%, 73% 1%, 80% 6%, 87% 0%, 94% 6%, 100% 2%, 100% 94%, 95% 100%, 89% 93%, 83% 99%, 76% 94%, 69% 100%, 62% 93%, 55% 99%, 48% 94%, 41% 100%, 34% 93%, 27% 99%, 20% 94%, 13% 100%, 6% 94%, 0% 98%);
+  --tile: polygon(2% 4%, 20% 0%, 40% 3%, 62% 0%, 80% 3%, 98% 1%, 100% 30%, 97% 55%, 100% 80%, 98% 98%, 78% 100%, 55% 97%, 30% 100%, 10% 97%, 0% 99%, 2% 70%, 0% 45%, 3% 22%);
+}
+* { box-sizing: border-box; }
+html { overflow-x: clip; }
+body {
+  margin: 0; overflow-x: clip; padding-block: 0 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  font-family: 'Manrope', system-ui, sans-serif;
+}
+button { font-family: inherit; }
+:focus-visible { outline: 3px solid #FFE14D; outline-offset: 3px; }
+.page { max-width: 660px; margin: 0 auto; }
+.logos { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.logo {
+  display: grid; place-items: center; flex: 0 1 140px; min-width: 0; height: 54px; border-radius: 12px;
+  font: 800 11px/1.1 'Manrope', sans-serif; letter-spacing: .06em; text-transform: uppercase; text-align: center;
+}
+.vsw { position: relative; z-index: 8; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0 20px; font: 800 13px 'Manrope', system-ui, sans-serif; }
+.vsw span { padding: 5px 12px; border-radius: 999px; background: #111111; color: #FFFFFF; letter-spacing: .06em; text-transform: uppercase; font-size: 11px; }
+.vsw button { padding: 6px 14px; border: 2px solid #111111; border-radius: 999px; background: #FFFFFF; color: #111111; font: 800 13px 'Manrope', sans-serif; cursor: pointer; }
+.vsw button[aria-selected="true"] { background: #111111; color: #FFFFFF; }
+.toast {
+  position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); z-index: 30; width: max-content; max-width: min(92vw, 420px);
+  padding: 12px 16px; transform: translate(-50%, 12px); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
+  background: #111111; color: #FFFFFF; border-radius: 12px; font: 700 14px/1.4 'Manrope', sans-serif; text-align: center;
+}
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+
+
+/* ===== purple felt, shared ===== */
+body[data-v="a"], body[data-v="k"], body[data-v="f"], body[data-v="d"] {
+  color: #F7F1FF; background-color: #4B2A6E;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(120% 70% at 50% 0%, #6A3C98 0%, #4B2A6E 55%, #36194F 100%);
+}
+.v { display: grid; gap: 22px; justify-items: center; padding-top: 6px; }
+.v > * { min-width: 0; max-width: 100%; }
+.pushpin { position: absolute; top: -9px; left: 50%; z-index: 3; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFFFFF99 0 14%, var(--pc, #E5412D) 15% 60%, #00000055 100%); box-shadow: 0 4px 5px #00000066; }
+.strip-w { position: relative; width: 100%; max-width: 520px; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, .35)); }
+.paper-strip { padding: 16px 16px 18px; background: #FFFFFF; clip-path: var(--jag); }
+.v .logo { border: 2px dashed #9AA0A6; color: #6F7480; background: #FFFFFF; }
+.cut { display: grid; justify-items: center; margin: 0; font-weight: 400; }
+.cut-l { display: flex; justify-content: center; gap: 2px; filter: drop-shadow(0 5px 3px rgba(0, 0, 0, .38)); }
+.ltr { --s: clamp(25px, 7.3vw, 46px); display: grid; place-items: center; width: var(--s); height: calc(var(--s) * 1.25); background: var(--c); color: var(--fc); font: 800 calc(var(--s) * .78)/1 'Rubik', sans-serif; clip-path: var(--tile); transform: translateY(var(--y)) rotate(var(--r)); }
+.cut-sw { margin-top: 2px; filter: drop-shadow(0 5px 3px rgba(0, 0, 0, .38)); transform: rotate(-1.6deg); }
+.cut-s { display: block; padding: 6px 16px 8px; background: #E5412D; color: #FFFFFF; clip-path: var(--jag); font: 800 clamp(15px, 4.4vw, 22px)/1.05 'Rubik', sans-serif; text-transform: uppercase; letter-spacing: .02em; }
+.pair { display: flex; gap: 16px; align-items: center; justify-content: center; }
+.leaf { position: relative; flex: none; width: 128px; padding: 24px 8px 10px; background: #FFFFFF; color: #1B1B2F; text-align: center; border-radius: 4px; transform: rotate(-4deg); box-shadow: 0 2px 0 #00000033, 0 12px 20px #00000066; }
+.leaf::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 17px; border-radius: 4px 4px 0 0; background: #E5412D; }
+.leaf .hole { position: absolute; top: 5px; width: 8px; height: 8px; border-radius: 50%; background: #7A1F16; }
+.leaf .h1 { left: 20px; } .leaf .h2 { right: 20px; }
+.leaf p { margin: 0; }
+.leaf .m { font: 800 12px 'Rubik', sans-serif; letter-spacing: .2em; color: #E5412D; }
+.leaf .d { font: 900 70px/.95 'Rubik', sans-serif; color: #E5412D; }
+.leaf .e { font: 700 24px/1 'Caveat', cursive; }
+.stamp-w { filter: drop-shadow(0 7px 5px rgba(0, 0, 0, .42)); transition: transform .15s; transform: rotate(-8deg); }
+.stamp-w:hover { transform: rotate(-3deg) scale(1.06); }
+.stamp { display: grid; place-items: center; width: 140px; height: 140px; padding: 0; border: 0; background: #E5412D; color: #FFFFFF; cursor: pointer; clip-path: var(--scal); font: 800 22px/1.05 'Rubik', sans-serif; text-transform: uppercase; }
+.stamp small { display: block; margin-top: 4px; font: 800 11px/1.2 'Manrope', sans-serif; letter-spacing: .06em; }
+.sub { margin: 0; font: 800 12px/1.5 'Rubik', sans-serif; letter-spacing: .1em; text-transform: uppercase; text-align: center; color: #FFE45C; }
+.qnote { position: relative; width: 100%; max-width: 420px; margin: 4px 0 0; padding: 20px 22px 14px; background: #FF8FB1; color: #1B1B2F; transform: rotate(-1.6deg); box-shadow: 0 2px 0 #00000026, 0 12px 20px #00000066; }
+.qnote blockquote { margin: 0; font: 700 clamp(28px, 8vw, 38px)/1 'Caveat', cursive; }
+.qnote figcaption { margin-top: 6px; font: 700 21px/1 'Caveat', cursive; opacity: .85; }
+.hint { margin: 0; font: 600 12px/1.4 'Manrope', sans-serif; opacity: .8; text-align: center; }
+.demo { padding: 8px 16px; border: 2px dashed #FFE45C; border-radius: 999px; background: transparent; color: #FFE45C; font: 800 12px 'Manrope', sans-serif; cursor: pointer; }
+.demo:hover { background: #FFE45C22; }
+
+/* tracker shell: sticky at the top, finished blocks light up */
+.trk { position: sticky; top: 8px; z-index: 6; width: 100%; padding: 10px 12px 12px; border-radius: 18px; background: #35194F; box-shadow: 0 8px 18px #00000066; }
+.trk-h { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 8px; font: 800 13px 'Rubik', sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+.trk-h b { letter-spacing: .04em; opacity: .75; }
+.trk button { font-family: 'Manrope', sans-serif; cursor: pointer; }
+.bar { height: 6px; margin-top: 9px; border-radius: 999px; background: #5D3A85; overflow: hidden; }
+.bar b { display: block; height: 100%; width: 0; border-radius: 999px; background: #FFE45C; transition: width .35s; }
+
+/* 1: chips */
+.chips { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+@media (min-width: 560px) { .chips { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.chip { display: flex; align-items: center; gap: 6px; width: 100%; padding: 6px 8px; border: 2px solid #7A57A3; border-radius: 12px; background: #5D3A85; color: #F7F1FF; font: 800 12px/1.1 'Manrope', sans-serif; text-align: left; transition: background .25s, color .25s, transform .25s, box-shadow .25s; }
+.chip i { flex: none; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: #F7F1FF; color: #4B2A6E; font: 800 11px 'Rubik', sans-serif; font-style: normal; }
+.chip.done { background: #FFE45C; border-color: #FFE45C; color: #1B1B2F; transform: translateY(-1px); box-shadow: 0 0 14px #FFE45C99; }
+.chip.done i { background: #1B1B2F; color: #FFE45C; }
+
+/* 2: film strip */
+.film { list-style: none; margin: 0; padding: 14px 6px; display: grid; grid-template-columns: repeat(var(--n, 5), minmax(0, 1fr)); gap: 4px; border-radius: 8px; background: #14091F; position: relative; }
+.film::before, .film::after { content: ""; position: absolute; left: 4px; right: 4px; height: 6px; background: repeating-linear-gradient(90deg, #F7F1FF 0 6px, transparent 6px 12px); border-radius: 2px; opacity: .75; }
+.film::before { top: 4px; } .film::after { bottom: 4px; }
+.frame { display: grid; justify-items: center; gap: 4px; width: 100%; padding: 0; border: 0; background: transparent; color: #CDBFE3; font: 700 9px/1.1 'Manrope', sans-serif; text-align: center; }
+.frame .pic { position: relative; width: 100%; border: 2px solid #3A2552; border-radius: 3px; overflow: hidden; filter: grayscale(1) brightness(.6); transition: filter .35s, border-color .35s, box-shadow .35s; }
+.frame img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+.frame .pic b { position: absolute; left: 2px; top: 2px; display: grid; place-items: center; width: 17px; height: 17px; border-radius: 50%; background: #F7F1FF; color: #4B2A6E; font: 800 10px 'Rubik', sans-serif; }
+.frame.done { color: #FFE45C; }
+.frame.done .pic { filter: none; border-color: #FFE45C; box-shadow: 0 0 14px #FFE45CAA; }
+.frame.done .pic b { background: #FFE45C; color: #1B1B2F; }
+
+/* 3: path of stars */
+.path { position: relative; list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n, 5), minmax(0, 1fr)); }
+.path::before, .path::after { content: ""; position: absolute; left: calc(50% / var(--n, 5)); top: 15px; height: 4px; border-radius: 2px; }
+.path::before { right: calc(50% / var(--n, 5)); background: #5D3A85; }
+.path::after { width: calc((100% - 100% / var(--n, 5)) * var(--p, 0)); background: #FFE45C; transition: width .35s; box-shadow: 0 0 10px #FFE45C99; }
+.stop { position: relative; z-index: 1; display: grid; justify-items: center; gap: 5px; padding: 0; border: 0; background: transparent; color: #CDBFE3; font: 700 9.5px/1.1 'Manrope', sans-serif; text-align: center; }
+.stop .dot { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 3px solid #7A57A3; background: #35194F; color: #F7F1FF; font: 800 14px 'Rubik', sans-serif; transition: background .3s, color .3s, transform .3s, box-shadow .3s, border-color .3s; }
+.stop.done { color: #FFE45C; }
+.stop.done .dot { background: #FFE45C; border-color: #FFE45C; color: #1B1B2F; transform: scale(1.12); box-shadow: 0 0 14px #FFE45CAA; }
+
+/* lower content for 1 and 3 */
+.tags { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px 14px; width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 560px) { .tags { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tag { position: relative; padding: 10px 10px 12px; background: #FFFFFF; color: #1B1B2F; transform: rotate(var(--r)); box-shadow: 0 2px 0 #00000026, 0 12px 20px #00000066; transition: background .25s; }
+.tag.done { background: #FFE45C; }
+.tag img { display: block; width: 100%; height: auto; aspect-ratio: 640 / 505; object-fit: cover; }
+.tag h3 { margin: 10px 0 0; font: 800 15px/1.15 'Rubik', sans-serif; }
+.tag .ok, .rowb .ok { display: none; position: absolute; right: -8px; top: -12px; z-index: 4; width: 32px; height: 32px; place-items: center; border-radius: 50%; background: #E5412D; color: #fff; font: 800 17px 'Rubik', sans-serif; box-shadow: 0 4px 8px #0006; }
+.done > .ok { display: grid; }
+.rowsb { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; width: 100%; }
+.rowb { position: relative; display: grid; grid-template-columns: 38px 84px minmax(0, 1fr); gap: 12px; align-items: center; padding: 8px 12px 8px 8px; border-radius: 14px; background: #5D3A85; transition: background .25s, color .25s; }
+.rowb .n { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #F7F1FF; color: #4B2A6E; font: 800 15px 'Rubik', sans-serif; }
+.rowb img { display: block; width: 100%; height: auto; aspect-ratio: 640 / 505; object-fit: cover; border-radius: 8px; }
+.rowb h3 { margin: 0; font: 800 16px/1.15 'Rubik', sans-serif; }
+.rowb.done { background: #FFE45C; color: #1B1B2F; }
+.rowb.done .n { background: #1B1B2F; color: #FFE45C; }
+.rowb .ok { right: 8px; top: 8px; width: 24px; height: 24px; font-size: 13px; background: #1B1B2F; color: #FFE45C; }
+
+.dock { position: sticky; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 5; display: flex; justify-content: center; pointer-events: none; }
+.go { display: inline-flex; flex-direction: column; align-items: center; gap: 3px; padding: 12px 40px 11px; border: 0; border-radius: 22px; background: #E5412D; color: #FFFFFF; cursor: pointer; pointer-events: auto; box-shadow: 0 6px 0 #8F2417, 0 14px 24px #00000066; transition: transform .12s; }
+.go .p1 { font: 800 24px/1 'Rubik', sans-serif; text-transform: uppercase; }
+.go .p2 { font: 800 12px/1 'Manrope', sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+.go:hover { transform: translateY(-2px); }
+.go:active { transform: translateY(3px); box-shadow: 0 2px 0 #8F2417; }
+
+
+/* compact logo strip, current-block highlight, description row */
+body[data-v="k"] .strip-w { max-width: 340px; }
+body[data-v="k"] .paper-strip { padding: 10px 14px 12px; }
+body[data-v="k"] .v .logo { height: 40px; }
+.v .logo { height: 54px; }
+.about { display: flex; gap: 16px; align-items: center; justify-content: center; width: 100%; max-width: 480px; }
+.about p { margin: 0; flex: 1; font: 700 clamp(15px, 4.2vw, 18px)/1.4 'Manrope', sans-serif; }
+.about p em { font-style: normal; color: #FFE45C; }
+.chip.cur:not(.done) { border-color: #FFE45C; box-shadow: 0 0 0 2px #FFE45C55, 0 0 14px #FFE45C77; animation: pulse 1.8s ease-in-out infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 5px #FFE45C22, 0 0 20px #FFE45CAA; } }
+.tag .now { display: none; position: absolute; left: -8px; top: -14px; z-index: 4; padding: 4px 10px; border-radius: 999px; background: #E5412D; color: #fff; font: 800 11px 'Rubik', sans-serif; letter-spacing: .06em; text-transform: uppercase; box-shadow: 0 4px 8px #0006; transform: rotate(-4deg); }
+.tag.cur:not(.done) .now { display: block; }
+.tag.cur:not(.done) { box-shadow: 0 0 0 4px #FFE45C, 0 12px 20px #00000066; }
+.tag:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 7px); }
+.go-wrap { display: grid; justify-items: center; gap: 8px; margin-top: 2px; }
+.go-wrap .stamp { width: 160px; height: 160px; font-size: 25px; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* ===== gallery switcher ===== */
+.vsw { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 6px; margin: 0 -4px 6px; padding: 8px 4px; background: #111111; border-radius: 0 0 14px 14px; }
+.vsw-scroll { display: flex; flex: 1; gap: 6px; min-width: 0; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; }
+.vsw-scroll::-webkit-scrollbar { display: none; }
+.vsw button { flex: none; scroll-snap-align: center; padding: 7px 13px; border: 2px solid #FFFFFF; border-radius: 999px; background: transparent; color: #FFFFFF; font: 800 13px 'Manrope', sans-serif; white-space: nowrap; cursor: pointer; }
+.vsw button[aria-selected="true"] { background: #FFE45C; border-color: #FFE45C; color: #111111; }
+.vsw .nav { padding: 6px 12px; font-size: 16px; line-height: 1; }
+.vcap { position: relative; z-index: 8; margin: 0 0 12px; font: 700 12px/1.4 'Manrope', sans-serif; text-align: center; color: #FFFFFFCC; background: #11111199; border-radius: 10px; padding: 6px 10px; }
+body[data-v="c"] .vcap { color: #1A1A33; background: #1A1A3312; }
+.trk { top: 60px; }
+.v2 .trk, .v3 .trk { top: 60px; }
+
+
+/* ===== purple board: start-screen compositions ===== */
+.toprow { display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%; max-width: 480px; }
+.strip-w.side { flex: none; width: auto; max-width: none; transform: rotate(-2deg); }
+.paper-strip.side { padding: 14px 12px 16px; }
+.logos.col { flex-direction: column; gap: 6px; }
+.logos.col span { display: none; }
+.logos.col .logo { flex: none; width: 112px; height: 44px; }
+.note { position: relative; width: 100%; max-width: 480px; padding: 18px 18px 16px; color: #1B1B2F; box-shadow: 0 2px 0 #00000026, 0 12px 20px #00000066; }
+.note.y { background: #FFE45C; transform: rotate(1.2deg); }
+.note.p { background: #FF8FB1; transform: rotate(-1.2deg); }
+.note .lead { margin: 0; font: 800 clamp(17px, 4.8vw, 20px)/1.3 'Rubik', sans-serif; }
+.note .teas { margin: 10px 0 0; font: 600 13.5px/1.45 'Manrope', sans-serif; }
+.plain { width: 100%; max-width: 480px; }
+.plain .lead { margin: 0; font: 700 clamp(30px, 8.6vw, 38px)/1.05 'Caveat', cursive; color: #FFE45C; }
+.plain .teas { margin: 8px 0 0; font: 600 14px/1.5 'Manrope', sans-serif; color: #F7F1FFDD; }
+.dpill { display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px; border-radius: 999px; background: #FFFFFF; color: #1B1B2F; font: 800 13px/1.1 'Manrope', sans-serif; letter-spacing: .05em; text-transform: uppercase; box-shadow: 0 6px 12px #0006; transform: rotate(2deg); }
+.dpill b { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #E5412D; color: #fff; font: 900 20px 'Rubik', sans-serif; letter-spacing: 0; }
+.go-wrap { display: grid; justify-items: center; gap: 8px; margin-top: 2px; }
+.go-wrap .stamp { width: 168px; height: 168px; font-size: 25px; }
+.go.wide { width: 100%; max-width: 480px; padding: 16px 20px 15px; border-radius: 22px; }
+.go.wide .p1 { font-size: 28px; }
+.vsw { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 6px; margin: 0 -4px 6px; padding: 8px 4px; background: #111111; border-radius: 0 0 14px 14px; }
+.vsw-scroll { display: flex; flex: 1; gap: 6px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.vsw-scroll::-webkit-scrollbar { display: none; }
+.vsw button { flex: none; padding: 7px 13px; border: 2px solid #FFFFFF; border-radius: 999px; background: transparent; color: #FFFFFF; font: 800 13px 'Manrope', sans-serif; white-space: nowrap; cursor: pointer; }
+.vsw button[aria-selected="true"] { background: #FFE45C; border-color: #FFE45C; color: #111111; }
+.vsw .nav { padding: 6px 12px; font-size: 16px; line-height: 1; }
+.vcap { position: relative; z-index: 8; margin: 0 0 12px; font: 700 12px/1.4 'Manrope', sans-serif; text-align: center; color: #FFFFFFCC; background: #11111199; border-radius: 10px; padding: 6px 10px; }
+.trk { top: 60px; }
+
+/* ===== compact board: logo, date left, text, blocks + start ===== */
+.logo-img { display: block; width: 78px; height: 78px; object-fit: contain; }
+.logo-img.sm { width: 60px; height: 60px; }
+.strip-w.logo-tag { flex: none; width: auto; max-width: none; transform: rotate(2deg); }
+.paper-strip.logo-p { padding: 12px 14px 14px; }
+.row2 { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; width: 100%; max-width: 480px; }
+.cols { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: start; width: 100%; max-width: 480px; }
+.cols .left { display: grid; gap: 16px; justify-items: center; }
+.cols .note { max-width: none; }
+.note.compact { padding: 14px 14px 12px; }
+.note.compact .lead { font-size: clamp(15px, 4.2vw, 17px); }
+.note.compact .teas { font-size: 12.5px; margin-top: 8px; }
+.tags.six { gap: 18px 12px; }
+.tags.six .tag { padding: 8px 8px 10px; }
+.tags.six .tag h3 { margin-top: 8px; font-size: 13px; }
+.tag.go { display: grid; place-items: center; text-align: center; padding: 0; background: #E5412D; color: #FFFFFF; border: 0; cursor: pointer; font-family: 'Rubik', sans-serif; width: 100%; }
+.tag.go:hover { transform: rotate(0deg) scale(1.03); }
+.tag.go .rk { display: block; font-size: 34px; line-height: 1; }
+.tag.go b { display: block; margin-top: 4px; font: 800 22px/1.05 'Rubik', sans-serif; text-transform: uppercase; }
+.tag.go small { display: block; margin-top: 6px; font: 800 11px 'Manrope', sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+li.gocell { list-style: none; display: grid; }
+li.gocell > .tag.go { align-self: center; min-height: 150px; border-radius: 4px; box-shadow: 0 2px 0 #00000026, 0 12px 20px #00000066; }
+.chip.start { background: #E5412D; border-color: #E5412D; color: #FFFFFF; transform: none; box-shadow: 0 4px 0 #8F2417; }
+.chip.start i { background: #FFFFFF; color: #E5412D; font-size: 12px; }
+.chip.start span { font-weight: 800; text-transform: uppercase; }
+.chip.start:hover { transform: translateY(-1px); }
+
+/* ===== final first screen: logos on top, text, cards, big green start ===== */
+.toplogos { display: flex; align-items: center; justify-content: center; gap: 32px; width: 100%; padding: 6px 0; }
+.toplogos img { display: block; width: 105px; height: auto; }
+.toplogos { gap: clamp(14px, 5vw, 32px); }
+.toplogos img { min-width: 0; flex: 0 1 105px; }
+.toplogos img.iv { flex-basis: 140px; width: 140px; }
+.note .lead b { color: #C0321F; }
+.mega-dock { position: sticky; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); z-index: 7; width: 100%; max-width: 480px; margin-top: 4px; }
+.mega {
+  position: relative; display: grid; place-items: center; gap: 4px; width: 100%; padding: 20px 16px 18px; border: 0; border-radius: 32px; overflow: hidden; cursor: pointer;
+  background: linear-gradient(#5BEA8A, #25C45F); color: #072E17;
+  box-shadow: 0 8px 0 #11823C, 0 18px 30px #000000AA, inset 0 3px 0 #FFFFFF66;
+  animation: bob 2.2s ease-in-out infinite; transition: transform .12s, box-shadow .12s;
+}
+.mega .p1 { font: 900 clamp(32px, 9.4vw, 44px)/1 'Rubik', sans-serif; text-transform: uppercase; letter-spacing: .02em; text-shadow: 0 2px 0 #FFFFFF55; }
+.mega .p1 i { display: inline-block; font-style: normal; animation: rocket 1.1s ease-in-out infinite; }
+.mega .p2 { font: 800 13px/1 'Manrope', sans-serif; letter-spacing: .08em; text-transform: uppercase; opacity: .85; }
+.mega::after { content: ""; position: absolute; top: 0; bottom: 0; width: 60px; left: -90px; background: linear-gradient(100deg, transparent, #FFFFFF88, transparent); transform: skewX(-20deg); animation: shine 3.2s ease-in-out infinite; }
+.mega:hover { transform: translateY(-2px) scale(1.015); }
+.mega:active { animation: none; transform: translateY(6px); box-shadow: 0 2px 0 #11823C, 0 8px 14px #000000AA, inset 0 3px 0 #FFFFFF66; }
+@keyframes bob { 50% { transform: translateY(-4px); } }
+@keyframes rocket { 50% { transform: translate(3px, -4px) rotate(8deg); } }
+@keyframes shine { 0%, 55% { left: -90px; } 100% { left: 120%; } }
+.mega.gob { height: 100%; min-height: 200px; align-content: center; justify-items: center; padding: 14px 8px; border-radius: 22px; gap: 6px; }
+.mega.gob .rk { font-size: 46px; line-height: 1; }
+.mega.gob .rk i { display: inline-block; font-style: normal; animation: rocket 1.1s ease-in-out infinite; }
+.mega.gob .p1 { font-size: clamp(26px, 7.6vw, 34px); }
+.mega.gob .p2 { text-align: center; line-height: 1.35; }
+.tags.six li.gocell { display: grid; }
+
+/* ===== survey ===== */
+.trk { top: 8px; }
+.q { gap: 14px; }
+.q .trk { max-width: 480px; }
+.qmeta { display: flex; justify-content: space-between; align-items: baseline; margin: 10px 0 0; font: 800 12px 'Manrope', sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+.qmeta b { color: #FFE45C; }
+.stop.cur:not(.done) .dot { border-color: #FFE45C; box-shadow: 0 0 0 3px #FFE45C44; }
+.stop.just .dot { animation: pop .6s ease; }
+@keyframes pop { 0% { transform: scale(.6); } 60% { transform: scale(1.35); } 100% { transform: scale(1.12); } }
+.qhead { display: flex; gap: 12px; align-items: center; width: 100%; max-width: 480px; }
+.qhead img { flex: none; width: 70px; height: auto; aspect-ratio: 640 / 505; object-fit: cover; border: 3px solid #FFFFFF; border-radius: 6px; transform: rotate(-3deg); box-shadow: 0 6px 12px #0006; }
+.qhead span { font: 800 12px/1.3 'Rubik', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: #FFE45C; }
+.qtext { margin: 0; width: 100%; max-width: 480px; font: 800 clamp(21px, 6vw, 26px)/1.2 'Rubik', sans-serif; color: #FFFFFF; }
+.opts { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; width: 100%; max-width: 480px; }
+.opt { position: relative; display: block; width: 100%; padding: 13px 52px 13px 14px; border: 0; border-radius: 16px; background: #FFFFFF; color: #1B1B2F; text-align: left; cursor: pointer; font-family: 'Manrope', sans-serif; box-shadow: 0 4px 0 #00000033, 0 10px 18px #00000044; transition: transform .12s, background .18s; }
+.opt:hover { transform: translateY(-2px); }
+.opt:active { transform: translateY(2px); }
+.opt .ot { display: block; font: 800 15.5px/1.25 'Rubik', sans-serif; }
+.opt .od { display: block; margin-top: 4px; font: 600 13.5px/1.4 'Manrope', sans-serif; color: #5C5675; }
+.opt .ck { position: absolute; right: 12px; top: 50%; display: grid; place-items: center; width: 28px; height: 28px; margin-top: -14px; border: 2px solid #D5CEE6; border-radius: 50%; color: transparent; font: 800 16px 'Rubik', sans-serif; }
+.opt.sel { background: #FFE45C; }
+.opt.sel .od { color: #4A4530; }
+.opt.sel .ck { background: #25C45F; border-color: #25C45F; color: #FFFFFF; animation: pop .35s ease; }
+.opt.own .ot { font-weight: 700; }
+.ownbox { display: grid; gap: 8px; margin-top: 10px; }
+.ownbox textarea { width: 100%; min-height: 78px; padding: 10px 12px; border: 2px solid #1B1B2F33; border-radius: 12px; background: #FFFFFF; color: #1B1B2F; font: 600 15px/1.4 'Manrope', sans-serif; resize: vertical; }
+.ownbox textarea:focus { outline: 3px solid #FFE45C; border-color: #1B1B2F; }
+.smallgo { justify-self: end; padding: 10px 22px; border: 0; border-radius: 999px; background: #25C45F; color: #072E17; font: 800 14px 'Rubik', sans-serif; cursor: pointer; box-shadow: 0 3px 0 #11823C; }
+.smallgo:disabled { opacity: .45; cursor: default; }
+.more { justify-self: center; padding: 10px 20px; border: 2px solid #FFFFFF99; border-radius: 999px; background: transparent; color: #FFFFFF; font: 800 14px 'Manrope', sans-serif; cursor: pointer; }
+.more:hover { background: #FFFFFF22; }
+.qnav { position: sticky; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); z-index: 6; display: flex; gap: 10px; width: 100%; max-width: 480px; padding-top: 6px; }
+.nb { flex: none; padding: 14px 18px; border: 2px solid #FFFFFFAA; border-radius: 18px; background: #35194F; color: #FFFFFF; font: 800 15px 'Manrope', sans-serif; cursor: pointer; }
+.nb.fwd { flex: 1; border: 0; background: linear-gradient(#5BEA8A, #25C45F); color: #072E17; font: 900 18px 'Rubik', sans-serif; box-shadow: 0 5px 0 #11823C, 0 12px 20px #0006; }
+.nb:disabled { opacity: .4; cursor: default; box-shadow: none; }
+.nb:not(:disabled):active { transform: translateY(3px); }
+/* celebration */
+.cele { position: relative; width: 100%; max-width: 440px; padding: 26px 20px 22px; border-radius: 6px; background: #FFFFFF; color: #1B1B2F; text-align: center; transform: rotate(-1deg); box-shadow: 0 2px 0 #00000026, 0 18px 30px #0007; animation: drop .5s cubic-bezier(.2, 1.4, .4, 1); }
+@keyframes drop { from { transform: translateY(-30px) rotate(-6deg) scale(.9); opacity: 0; } }
+.cele img { display: block; width: 72%; margin: 0 auto 14px; height: auto; aspect-ratio: 640 / 505; object-fit: cover; border-radius: 4px; box-shadow: 0 8px 16px #0004; transform: rotate(2deg); }
+.cele .big { margin: 0; font: 900 clamp(24px, 7vw, 32px)/1.1 'Rubik', sans-serif; color: #E5412D; }
+.cele .praise { margin: 8px 0 0; font: 700 17px/1.35 'Manrope', sans-serif; }
+.cele .left { margin: 8px 0 16px; font: 600 14px/1.4 'Manrope', sans-serif; color: #5C5675; }
+.cele .nb.fwd { width: 100%; padding: 16px; }
+.cf { position: fixed; top: -14px; z-index: 50; width: 10px; height: 16px; border-radius: 2px; pointer-events: none; animation: fall var(--d) linear var(--w) forwards; }
+@keyframes fall { to { transform: translate(var(--x), 110vh) rotate(var(--r)); opacity: .9; } }
+/* review */
+.rev { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; width: 100%; max-width: 480px; }
+.rev h3 { margin: 10px 0 0; font: 800 13px 'Rubik', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: #FFE45C; }
+.ri { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; padding: 12px 14px; border-radius: 14px; background: #FFFFFF; color: #1B1B2F; }
+.ri .rq { grid-column: 1; margin: 0; font: 700 13px/1.35 'Manrope', sans-serif; color: #5C5675; }
+.ri .ra { grid-column: 1; margin: 0; font: 800 15px/1.3 'Rubik', sans-serif; }
+.ri .ra small { display: block; margin-top: 2px; font: 600 12.5px 'Manrope', sans-serif; color: #5C5675; }
+.ri button { grid-column: 2; grid-row: 1 / span 2; align-self: center; padding: 8px 12px; border: 2px solid #1B1B2F33; border-radius: 999px; background: transparent; color: #1B1B2F; font: 800 12px 'Manrope', sans-serif; cursor: pointer; }
+.note-s { margin: 0; max-width: 480px; font: 600 12.5px/1.45 'Manrope', sans-serif; text-align: center; color: #F7F1FFB3; }
+.mid { text-align: center; max-width: 480px; }
+.mid h2 { margin: 0; font: 900 clamp(28px, 8vw, 36px)/1.1 'Rubik', sans-serif; }
+.mid p { margin: 8px 0 0; font: 600 15px/1.45 'Manrope', sans-serif; color: #F7F1FFDD; }
+
+/* ===== larger, clearer question screen ===== */
+.q .trk { padding: 10px 12px 8px; }
+.q .trk .path { margin: 0; }
+.q .stop > span:last-child { display: none; }
+.q .stop .dot { width: 38px; height: 38px; font-size: 16px; }
+.q .path::before, .q .path::after { top: 17px; }
+.hero { position: relative; width: 100%; max-width: 480px; height: 170px; border: 4px solid #FFFFFF; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 22px #0006; transform: rotate(-.6deg); background: #35194F; }
+.hero img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.hero-t { position: absolute; left: 0; right: 0; bottom: 0; padding: 34px 14px 10px; background: linear-gradient(transparent, #1B0F2BD9 55%, #1B0F2BF2); color: #FFFFFF; }
+.hero-t span { display: block; font: 800 12px/1 'Rubik', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #FFE45C; }
+.hero-t b { display: block; margin-top: 4px; font: 900 clamp(20px, 5.8vw, 25px)/1.12 'Rubik', sans-serif; }
+.qprog { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 480px; font: 800 14px 'Manrope', sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+.qprog b { color: #FFE45C; font-size: 17px; }
+.pips { display: flex; gap: 6px; }
+.pip { width: 26px; height: 8px; border-radius: 999px; background: #FFFFFF33; }
+.pip.ok { background: #25C45F; }
+.pip.now { background: #FFE45C; box-shadow: 0 0 8px #FFE45CAA; }
+.qtext { font: 900 clamp(25px, 7.4vw, 31px)/1.18 'Rubik', sans-serif; }
+.picked { margin: 0; width: 100%; max-width: 480px; padding: 10px 14px; border-radius: 12px; background: #25C45F2E; border: 2px solid #25C45F; font: 700 14px/1.35 'Manrope', sans-serif; }
+.opts { gap: 12px; }
+.opt { padding: 17px 56px 17px 18px; border-radius: 20px; }
+.opt .ot { font-size: 19px; line-height: 1.22; }
+.opt .od { font-size: 15px; margin-top: 5px; }
+.opt .ck { width: 32px; height: 32px; margin-top: -16px; right: 14px; }
+.opt.own { background: #FFFFFFE6; }
+.more { padding: 13px 22px; font-size: 16px; border-width: 3px; }
+.more small { opacity: .8; font-weight: 700; }
+.qnav { position: static; }
+
+.head2 { display: grid; grid-template-columns: 52% minmax(0, 1fr); gap: 14px; align-items: center; width: 100%; max-width: 480px; }
+.head2 img { display: block; width: 100%; height: auto; aspect-ratio: 640 / 505; object-fit: cover; border: 4px solid #FFFFFF; border-radius: 8px; box-shadow: 0 10px 20px #0006; transform: rotate(-2deg); }
+.head2 .ht { display: grid; gap: 6px; justify-items: start; }
+.head2 .k { font: 800 12px/1 'Rubik', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #FFE45C; }
+.head2 b { min-width: 0; max-width: 100%; overflow-wrap: anywhere; font: 900 clamp(16px, 4.7vw, 20px)/1.15 'Rubik', sans-serif; }
+.head2 .qp { font: 800 13px/1 'Manrope', sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+.head2 .qp i { font-style: normal; color: #FFE45C; font-size: 16px; }
+.head2 .pips { gap: 4px; }
+.head2 .pip { width: 20px; height: 7px; }
+
+/* ===== question card structure (tiles, badge, one white card, lettered options) ===== */
+.tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: 100%; max-width: 480px; }
+@media (min-width: 560px) { .tiles { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.tile { position: relative; display: grid; grid-template-columns: auto 1fr; gap: 0 6px; align-items: center; padding: 8px 10px 9px; border: 3px solid #7A57A3; border-radius: 16px; background: #5D3A85; color: #F7F1FF; box-shadow: 0 4px 0 #00000040; transition: background .3s, color .3s, border-color .3s, transform .3s; }
+.tile .tn { font: 900 22px/1 'Rubik', sans-serif; }
+.tile .tc { justify-self: end; font: 800 12px/1 'Manrope', sans-serif; opacity: .85; }
+.tile .tt { grid-column: 1 / -1; margin-top: 3px; font: 800 12px/1.15 'Manrope', sans-serif; }
+.tile.cur { background: #FFFFFF; border-color: #FFE45C; color: #2A1646; transform: translateY(-2px); }
+.tile.done { background: #FFE45C; border-color: #FFE45C; color: #2A1646; box-shadow: 0 0 14px #FFE45C88, 0 4px 0 #00000040; }
+.tile.done .tn { color: #1D8F4A; }
+.tile.just { animation: pop .6s ease; }
+.qbadge { display: flex; align-items: center; gap: 12px; width: 100%; max-width: 480px; }
+.qbadge .bd { flex: none; padding: 8px 14px; border: 3px solid #2A1646; border-radius: 12px; background: #FF9A1F; color: #2A1646; font: 900 16px/1 'Rubik', sans-serif; transform: rotate(-2deg); box-shadow: 0 4px 0 #00000040; }
+.qbadge .bn { font: 800 15px/1.2 'Manrope', sans-serif; color: #F7F1FFE6; }
+.q > .pips { width: 100%; max-width: 480px; gap: 6px; }
+.q > .pips .pip { width: 44px; height: 9px; }
+.qcard { width: 100%; max-width: 480px; padding: 20px 18px 18px; border: 4px solid #2A1646; border-radius: 28px; background: #FFFFFF; color: #2A1646; box-shadow: 8px 8px 0 #FFE45C, 0 18px 30px #0006; }
+.qch { display: grid; grid-template-columns: minmax(0, 1fr) 38%; gap: 12px; align-items: start; }
+.qch img { display: block; width: 100%; height: auto; aspect-ratio: 640 / 505; object-fit: cover; border: 3px solid #2A1646; border-radius: 10px; transform: rotate(2.5deg); box-shadow: 3px 4px 0 #FFE45C; }
+.qcard .qtext { margin: 0; max-width: none; font: 900 clamp(22px, 6vw, 27px)/1.18 'Rubik', sans-serif; color: #2A1646; }
+.qhint { margin: 8px 0 14px; font: 700 15px/1.3 'Manrope', sans-serif; color: #7A4F91; }
+.qcard .opts { max-width: none; gap: 11px; }
+.qcard .opt { display: flex; align-items: center; gap: 12px; padding: 12px 14px 12px 12px; border: 3px solid #2A1646; border-radius: 18px; background: #FFFFFF; color: #2A1646; box-shadow: 0 4px 0 #FFE45C; transition: transform .12s, background .15s, box-shadow .15s; }
+.qcard .opt:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #FFE45C; }
+.qcard .opt:active { transform: translateY(2px); box-shadow: 0 1px 0 #FFE45C; }
+.qcard .opt .lt { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border: 3px solid #2A1646; border-radius: 12px; background: #FFE45C; font: 900 18px 'Rubik', sans-serif; }
+.qcard .opt .tx { min-width: 0; }
+.qcard .opt .ot { font: 800 17.5px/1.22 'Rubik', sans-serif; }
+.qcard .opt .od { margin-top: 4px; font: 600 14.5px/1.38 'Manrope', sans-serif; color: #5A3D70; }
+.qcard .opt.sel { background: #E9FBEF; border-color: #1D8F4A; box-shadow: 0 4px 0 #25C45F; }
+.qcard .opt.sel .lt { background: #25C45F; border-color: #1D8F4A; color: #FFFFFF; animation: pop .35s ease; }
+.qcard .opt.sel .od { color: #2E6B45; }
+.qcard .opt.own { border-style: dashed; background: #F7F1FF; }
+.qcard .opt.own .lt { background: #FFFFFF; }
+.qcard .opt .ck { display: none; }
+.qcard .ownbox textarea { border-color: #2A1646; }
+.qcard .picked { margin: 12px 0 0; max-width: none; }
+.pager { display: flex; gap: 10px; margin-top: 14px; }
+.pgb { flex: none; width: 52px; border: 3px solid #2A1646; border-radius: 16px; background: #FFFFFF; color: #2A1646; font: 900 26px/1 'Rubik', sans-serif; cursor: pointer; }
+.pgmore { flex: 1; padding: 13px 14px; border: 3px solid #2A1646; border-radius: 16px; background: #7C5CE6; color: #FFFFFF; font: 900 17px/1.1 'Rubik', sans-serif; cursor: pointer; box-shadow: 0 4px 0 #2A1646; }
+.pgmore small { display: block; margin-top: 3px; font: 700 12px 'Manrope', sans-serif; opacity: .9; }
+.pgmore:active { transform: translateY(3px); box-shadow: 0 1px 0 #2A1646; }
+.nb.sq { width: 60px; padding: 0; font-size: 24px; }
+
+/* ===== picture tiles on top, centred question, clear flip + next ===== */
+.btiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 480px; }
+@media (min-width: 560px) { .btiles { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.bt { display: grid; gap: 6px; }
+.bt .tp { position: relative; display: block; border: 3px solid #FFFFFF55; border-radius: 12px; overflow: hidden; background: #35194F; transition: border-color .3s, box-shadow .3s, transform .3s; }
+.bt img { display: block; width: 100%; height: auto; aspect-ratio: 640 / 505; object-fit: cover; opacity: .62; filter: saturate(.7); transition: opacity .3s, filter .3s; }
+.bt .tn { font: 800 12.5px/1.15 'Manrope', sans-serif; color: #F7F1FFCC; text-align: center; }
+.bt .tk { position: absolute; right: 5px; top: 5px; display: none; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #25C45F; color: #FFFFFF; font: 900 15px 'Rubik', sans-serif; box-shadow: 0 2px 6px #0006; }
+.bt.cur .tp { border-color: #FFE45C; box-shadow: 0 0 0 3px #FFE45C55; transform: translateY(-2px); }
+.bt.cur img { opacity: 1; filter: none; }
+.bt.cur .tn { color: #FFE45C; }
+.bt.done .tp { border-color: #25C45F; box-shadow: 0 0 14px #25C45F99; }
+.bt.done img { opacity: 1; filter: none; }
+.bt.done .tk { display: grid; }
+.bt.done .tn { color: #FFFFFF; }
+.bt.just .tp { animation: pop .6s ease; }
+.qcard .qtext { text-align: center; }
+.qhint { text-align: center; margin: 8px 0 16px; font-size: 16px; }
+.pager { display: grid; gap: 10px; margin-top: 16px; }
+.pdots { display: flex; justify-content: center; gap: 7px; }
+.pdots i { width: 10px; height: 10px; border-radius: 50%; background: #D8CCE8; }
+.pdots i.on { background: #7C5CE6; transform: scale(1.25); }
+.prow { display: flex; gap: 10px; }
+.pgmore { display: flex; align-items: center; gap: 12px; padding: 14px 16px; text-align: left; }
+.pgmore .pa { flex: none; font: 900 30px/1 'Rubik', sans-serif; animation: spin2 2.4s ease-in-out infinite; }
+.pgmore .pt { flex: 1; font: 900 18px/1.15 'Rubik', sans-serif; }
+.pgmore .pt small { margin-top: 4px; }
+.pgmore .pr { flex: none; font: 900 30px/1 'Rubik', sans-serif; animation: nudge 1.2s ease-in-out infinite; }
+@keyframes spin2 { 0%, 60% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
+@keyframes nudge { 50% { transform: translateX(5px); } }
+.qnav { position: sticky; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); z-index: 6; padding: 10px 0 0; background: linear-gradient(transparent, #36194FE6 40%); }
+.nb.fwd { padding: 17px 16px; font-size: 21px; }
+.nb.fwd:not(:disabled) { animation: bob 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .pgmore .pa, .pgmore .pr, .nb.fwd { animation: none !important; } }
+
+/* ===== round 3: bigger block pictures, counter on top of the card ===== */
+.btiles { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 520px; }
+@media (min-width: 560px) { .btiles { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.bt.cur { grid-column: 1 / -1; }
+.bt.cur .tn { font-size: 20px; }
+.bt.cur .tp { border-width: 4px; border-radius: 16px; }
+.bt:not(.cur) .tn { font-size: 11.5px; }
+.qcard .qbadge { justify-content: center; max-width: none; }
+.qcard .pips { justify-content: center; max-width: none; margin: 10px 0 14px; }
+.qcard .pips .pip { width: 38px; }
+.qcard .qbadge .bd { font-size: 17px; }
+.qnav { background: linear-gradient(transparent, #2A1243 35%); }
+.nb.fwd:not(:disabled) { background: #25C45F; color: #0B2A14; opacity: 1; }
+.qcard .pip { background: #DCD0EC; }
+.qcard .pip.ok { background: #25C45F; }
+.qcard .pip.now { background: #FF9A1F; box-shadow: none; }
+
+/* ===== round 4: start button as before; five equal block pictures ===== */
+.mega.gob { display: grid; flex-direction: initial; background: linear-gradient(#5BEA8A, #25C45F); color: #072E17; border: 0; border-radius: 22px; }
+.btiles { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; max-width: 520px; }
+.bt.cur { grid-column: auto; }
+.bt .tp { border-width: 2px; border-radius: 9px; }
+.bt.cur .tp { border-width: 3px; border-radius: 10px; }
+.bt.cur .tn, .bt .tn { font-size: 10.5px; }
+.bt .tk { width: 18px; height: 18px; font-size: 11px; right: 2px; top: 2px; }
+
+/* ===== round 5: livelier Далее, tidy "Смотреть ещё", coloured letters ===== */
+.nb.fwd { border: 3px solid #0E5A2A; background: linear-gradient(#8CFFAE, #2FD66B 55%, #19B955); color: #06311A; font: 900 24px/1 'Rubik', sans-serif; letter-spacing: .02em; text-transform: uppercase; box-shadow: 0 6px 0 #0E7A3A, 0 0 0 4px #FFFFFF55, 0 0 26px #5BFF8DAA; position: relative; overflow: hidden; }
+.nb.fwd:disabled { background: #B9AECB; color: #5A4A72; border-color: #8C7DA5; box-shadow: 0 5px 0 #7A6A93; opacity: .9; text-transform: none; font-size: 20px; }
+.nb.fwd:not(:disabled)::after { content: ""; position: absolute; top: 0; bottom: 0; width: 50px; left: -80px; background: linear-gradient(100deg, transparent, #FFFFFFAA, transparent); transform: skewX(-20deg); animation: shine 2.4s ease-in-out infinite; }
+.pgmore { background: linear-gradient(#8F73FF, #6A4BDB); color: #FFFFFF; gap: 10px; padding: 12px 14px; }
+.pgmore .pt { font: 900 19px/1.1 'Rubik', sans-serif; white-space: nowrap; letter-spacing: 0; }
+.pgmore .pt small { display: block; margin-top: 3px; font: 700 12.5px/1.2 'Manrope', sans-serif; white-space: nowrap; opacity: .9; }
+.pgmore .pa, .pgmore .pr { font-size: 26px; }
+.qcard .opts > li:nth-child(4n+1) .lt { background: #FFE45C; }
+.qcard .opts > li:nth-child(4n+2) .lt { background: #FF9FC4; }
+.qcard .opts > li:nth-child(4n+3) .lt { background: #8FD3FF; }
+.qcard .opts > li:nth-child(4n+4) .lt { background: #FFB866; }
+.qcard .opt.sel .lt { background: #25C45F !important; color: #FFFFFF; }
+.pgmore { flex: 1 1 0; min-width: 0; }
+.pgmore .pt { font-size: 18px; }
+.pgmore .pt small { font-size: 12px; }
+
+/* ===== round 6: Далее never overlaps; chosen option takes its letter's colour ===== */
+.qnav { position: static; background: none; padding: 14px 0 6px; margin-top: 4px; }
+.q { padding-bottom: 20px; }
+.qcard .opts > li .opt.sel .lt { color: #2A1646; border-color: #2A1646; }
+.qcard .opts > li:nth-child(4n+1) .opt.sel { background: #FFF3B8; border-color: #E0B800; box-shadow: 0 4px 0 #FFE45C; }
+.qcard .opts > li:nth-child(4n+2) .opt.sel { background: #FFE0EE; border-color: #E0558F; box-shadow: 0 4px 0 #FF9FC4; }
+.qcard .opts > li:nth-child(4n+3) .opt.sel { background: #DDF1FF; border-color: #2E8FD6; box-shadow: 0 4px 0 #8FD3FF; }
+.qcard .opts > li:nth-child(4n+4) .opt.sel { background: #FFE9CC; border-color: #E08A1F; box-shadow: 0 4px 0 #FFB866; }
+.qcard .opts > li .opt.sel .od { color: #4A3A66; }
+.qcard .opts > li:nth-child(4n+1) .opt.sel .lt { background: #FFE45C !important; }
+.qcard .opts > li:nth-child(4n+2) .opt.sel .lt { background: #FF9FC4 !important; }
+.qcard .opts > li:nth-child(4n+3) .opt.sel .lt { background: #8FD3FF !important; }
+.qcard .opts > li:nth-child(4n+4) .opt.sel .lt { background: #FFB866 !important; }
+.qcard .opts > li .opt.own.sel { background: #EADFFF; border-color: #7C5CE6; box-shadow: 0 4px 0 #B79CFF; }
+.qcard .opts > li .opt.own.sel .lt { background: #B79CFF !important; }
+
+/* ===== about + finale ===== */
+.abt .ah { margin: 16px 0 8px; font: 800 17px/1.2 'Rubik', sans-serif; color: #2A1646; text-align: center; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.chip { padding: 11px 15px; border: 3px solid #2A1646; border-radius: 999px; background: #FFFFFF; color: #2A1646; font: 800 15px/1.1 'Manrope', sans-serif; cursor: pointer; box-shadow: 0 3px 0 #2A164655; }
+.chip:nth-child(4n+1).on { background: #FFE45C; } .chip:nth-child(4n+2).on { background: #FF9FC4; } .chip:nth-child(4n+3).on { background: #8FD3FF; } .chip:nth-child(4n+4).on { background: #FFB866; }
+.chip.on { transform: translateY(2px); box-shadow: none; }
+.reg { width: 100%; box-sizing: border-box; padding: 14px 16px; border: 3px solid #2A1646; border-radius: 14px; font: 700 17px 'Manrope', sans-serif; color: #2A1646; background: #F7F1FF; }
+.thanks { width: 100%; max-width: 480px; text-align: center; color: #FFFFFF; }
+.thanks .big { font: 900 26px/1.1 'Rubik', sans-serif; margin: 6px 0 12px; color: #FFE45C; }
+.thanks img { width: 100%; border-radius: 16px; border: 4px solid #FFFFFF; box-shadow: 0 8px 0 #00000040; display: block; transform: rotate(-1deg); }
+.thanks .tq { font: 800 20px/1.2 'Rubik', sans-serif; margin: 14px 0 4px; }
+.thanks .ts { font: 600 15px/1.35 'Manrope', sans-serif; opacity: .9; margin: 0; }
+.revbox { width: 100%; max-width: 480px; background: #FFFFFF18; border-radius: 14px; padding: 10px 14px; color: #FFFFFF; }
+.revbox summary { cursor: pointer; font: 800 16px 'Manrope', sans-serif; padding: 6px 0; }
+.abt .chip { width: auto !important; flex: 0 0 auto; display: inline-block; padding: 9px 13px; font-size: 14.5px; }
+.abt .chips { gap: 7px; }
+.abt .ah { margin: 12px 0 7px; }
+.abt .qhint { margin-bottom: 4px; }
+.thanks .ts { margin-bottom: 4px; }
+.thanks .tq { font-size: 17px; color: #FFE45C; margin: 10px 0 12px; }
+.enot { margin: 0; background: #FFFFFF; border-radius: 18px; border: 4px solid #FFFFFF; overflow: hidden; box-shadow: 0 8px 0 #00000040; }
+.enot img { width: 100%; max-width: 340px; margin: 0 auto; border: 0; border-radius: 0; box-shadow: none; transform: none; display: block; }
+.enot figcaption { padding: 12px 10px 14px; color: #2A1646; }
+.enot b { display: block; font: 900 22px/1.15 'Rubik', sans-serif; }
+.enot small { display: block; margin-top: 6px; font: 700 14px/1.2 'Manrope', sans-serif; color: #6A4BDB; }
+.enot b.lyr:empty { display: none; }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="page" id="app"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const DATA = [{"title": "Герои мультфильмов в школе", "qs": [{"n": 1, "q": "Какой герой мультфильма мог бы стать идеальным учителем?", "opts": [{"t": "Кот Матроскин", "d": "строгий, практичный, знает цену труду и не терпит беспорядка"}, {"t": "Сова из «Винни-Пуха»", "d": "настоящий интеллектуал: любит объяснять, рассуждать и использовать сложные слова"}, {"t": "Крокодил Гена", "d": "добрый, терпеливый, найдёт подход даже к самым застенчивым ученикам"}, {"t": "Удав из «38 попугаев»", "d": "философ, который научит думать, задавать вопросы и не торопиться с ответами"}, {"t": "Дядя Фёдор", "d": "сторонник самостоятельности: доверяет детям и учит принимать решения"}, {"t": "Багира из «Маугли»", "d": "мудрая, справедливая, умеет поддерживать дисциплину без лишних слов"}, {"t": "Котёнок Гав", "d": "добрый и любознательный, покажет, почему не нужно бояться задавать вопросы"}, {"t": "Попугай Кеша", "d": "артистичный, эмоциональный, превратит каждый урок в представление"}, {"t": "Заяц из «Ну, погоди!»", "d": "находчивый, сообразительный, умеет быстро реагировать на неожиданности"}, {"t": "Слонёнок из «38 попугаев»", "d": "внимательный, терпеливый и готов помогать другим"}], "own": "Свой вариант"}, {"n": 2, "q": "Кто из мультгероев больше всего похож на современного школьника?", "opts": [{"t": "Незнайка", "d": "уверен в себе, любит экспериментировать и сначала действует, а потом разбирается"}, {"t": "Буратино", "d": "любознательный, непоседливый, легко отвлекается, но быстро находит выход из неприятностей"}, {"t": "Вовка из Тридевятого царства", "d": "хочет всё получить быстро, желательно без домашних заданий и лишних усилий"}, {"t": "Мартышка из «38 попугаев»", "d": "задаёт тысячу вопросов, не сидит на месте и заражает всех энергией"}, {"t": "Попугай Кеша", "d": "обожает быть в центре внимания, мечтает о признании и независимости"}, {"t": "Малыш из «Малыша и Карлсона»", "d": "мечтательный, чувствительный, нуждается в понимании и настоящей дружбе"}, {"t": "Заяц из «Ну, погоди!»", "d": "сообразительный, самостоятельный, быстро адаптируется к любым обстоятельствам"}, {"t": "Чебурашка", "d": "добрый, открытый, немного наивный, очень хочет найти друзей"}, {"t": "Шарик из «Простоквашино»", "d": "увлекающийся, любит новые гаджеты, фотографии и приключения"}, {"t": "Слонёнок из «38 попугаев»", "d": "старательный, иногда сомневается в себе, но всегда стремится разобраться"}, {"t": "Алиса Селезнёва из «Тайны третьей планеты»", "d": "смелая, любознательная, готова исследовать неизвестное"}], "own": "Свой вариант"}, {"n": 3, "q": "Кому из мультгероев вы бы поставили двойку за поведение, но пятёрку за находчивость?", "opts": [{"t": "Карлсону", "d": "за съеденное варенье, шалости и невероятный талант выкручиваться из любых ситуаций"}, {"t": "Волку из «Ну, погоди!»", "d": "за бесконечные хулиганства и изобретательность в погоне за Зайцем"}, {"t": "Попугаю Кеше", "d": "за капризы, побеги из дома и артистические способности"}, {"t": "Буратино", "d": "за непослушание, прогулы и способность найти приключения буквально на пустом месте"}, {"t": "Вовке из Тридевятого царства", "d": "за лень и попытки переложить все задания на других"}, {"t": "Мартышке из «38 попугаев»", "d": "за чрезмерную активность и самые неожиданные идеи"}, {"t": "Коту Матроскину", "d": "за споры со всеми окружающими и умение найти выгоду в любой ситуации"}, {"t": "Шарику из «Простоквашино»", "d": "за увлечение фотоохотой и постоянные приключения"}, {"t": "Атаманше из «Бременских музыкантов»", "d": "за нарушение дисциплины и талант организовывать самые рискованные предприятия"}, {"t": "Старухе Шапокляк", "d": "за проделки и выдающуюся изобретательность в создании неприятностей"}], "own": "Свой вариант"}, {"n": 4, "q": "Если бы вы могли выбрать мультипликационного помощника на урок, кто бы это был?", "opts": [{"t": "Кот Матроскин", "d": "организует класс, составит расписание и проверит, всё ли на месте"}, {"t": "Чебурашка", "d": "поможет новичкам освоиться и объединит даже самых разных учеников"}, {"t": "Карлсон", "d": "устроит такую физкультминутку, которую никто не забудет"}, {"t": "Винни-Пух", "d": "придумает нестандартное объяснение и обязательно добавит немного поэзии"}, {"t": "Крокодил Гена", "d": "поможет уладить конфликты и поддержит тех, кому трудно"}, {"t": "Удав из «38 попугаев»", "d": "научит логике, философии и умению рассматривать вопрос с разных сторон"}, {"t": "Шарик из «Простоквашино»", "d": "возьмёт на себя фото-, видеосъёмку и школьные новости"}, {"t": "Почтальон Печкин", "d": "обеспечит документооборот и проследит, чтобы всё было по правилам"}, {"t": "Багира из «Маугли»", "d": "наведёт дисциплину одним взглядом"}, {"t": "Алиса Селезнёва", "d": "организует научный эксперимент и отправит класс исследовать неизведанное"}], "own": "Свой вариант"}, {"n": 5, "q": "Какой отрицательный или неоднозначный мультгерой на самом деле заслуживает сочувствия?", "opts": [{"t": "Волк из «Ну, погоди!»", "d": "столько лет пытается догнать Зайца, но ничего не получается"}, {"t": "Старуха Шапокляк", "d": "возможно, за её вредностью скрывается одиночество"}, {"t": "Карабас-Барабас", "d": "всё хочет контролировать, но никто не желает ему подчиняться"}, {"t": "Атаманша из «Бременских музыкантов»", "d": "привыкла командовать, но её планы постоянно рушатся"}, {"t": "Снежная королева", "d": "за внешним холодом, возможно, скрывается неспособность к близости"}, {"t": "Попугай Кеша", "d": "его капризы иногда больше напоминают желание быть замеченным"}, {"t": "Почтальон Печкин", "d": "просто хотел велосипед, а прослыл вредным"}, {"t": "Вовка из Тридевятого царства", "d": "мечтал о лёгкой жизни, но столкнулся с необходимостью трудиться"}, {"t": "Лиса Алиса", "d": "хитра и изобретательна, но использует свои способности не лучшим образом"}, {"t": "Никто из перечисленных"}], "own": "Свой вариант"}]}, {"title": "Цитата дня!", "qs": [{"n": 6, "q": "Какая ваша любимая цитата из мультфильмов?", "opts": [{"t": "«Спокойствие, только спокойствие!»", "d": "«Малыш и Карлсон»"}, {"t": "«У меня есть мысль, и я её думаю!»", "d": "«38 попугаев»"}, {"t": "«Ну, заяц, погоди!»", "d": "«Ну, погоди!»"}, {"t": "«Усы, лапы и хвост — вот мои документы!»", "d": "«Простоквашино»"}, {"t": "«Мы строили, строили и наконец построили!»", "d": "«Крокодил Гена»"}, {"t": "«А в попугаях-то я гораздо длиннее!»", "d": "«38 попугаев»"}, {"t": "«Щас спою!»", "d": "«Жил-был пёс»"}, {"t": "«Ты это… заходи, если что!»", "d": "«Жил-был пёс»"}, {"t": "«Птица Говорун отличается умом и сообразительностью»", "d": "«Тайна третьей планеты»"}, {"t": "«А мы тут, знаете ли, плюшками балуемся!»", "d": "«Малыш и Карлсон»"}, {"t": "«Таити, Таити… Не были мы ни на каком Таити!»", "d": "«Возвращение блудного попугая»"}, {"t": "«Неправильно ты, дядя Фёдор, бутерброд ешь!»", "d": "«Простоквашино»"}, {"t": "«Я почему вредный был? Потому что у меня велосипеда не было!»", "d": "«Простоквашино»"}, {"t": "«Всё-таки хорошо, что мы снова вместе!»", "d": "«Ёжик в тумане»"}, {"t": "«Лучший мой подарочек — это ты!»", "d": "«Ну, погоди!»"}, {"t": "«Чтобы продать что-нибудь ненужное, надо сначала купить что-нибудь ненужное!»", "d": "«Простоквашино»"}, {"t": "«А я всё чаще замечаю, что меня как будто кто-то подменил»", "d": "«Зима в Простоквашино»"}, {"t": "«Кто ходит в гости по утрам, тот поступает мудро!»", "d": "«Винни-Пух»"}, {"t": "«Безвозмездно, то есть даром!»", "d": "«Винни-Пух»"}], "own": "Своя цитата"}, {"n": 7, "q": "Какую фразу вы бы повесили в учительской?", "opts": [{"t": "«Спокойствие, только спокойствие!»"}, {"t": "«У меня есть мысль, и я её думаю!»"}, {"t": "«Мы строили, строили и наконец построили!»"}, {"t": "«А мы тут, знаете ли, плюшками балуемся!»"}, {"t": "«Всё-таки хорошо, что мы снова вместе!»"}, {"t": "«Не ходи туда, там тебя ждут неприятности!»"}, {"t": "«Птица Говорун отличается умом и сообразительностью»"}, {"t": "«Неправильно ты, дядя Фёдор, бутерброд ешь!»"}], "own": "Свой вариант"}, {"n": 8, "q": "Какую фразу из мультфильмов современным детям сложнее всего понять без объяснения?", "opts": [{"t": "«А мы тут, знаете ли, плюшками балуемся!»"}, {"t": "«Таити, Таити… Не были мы ни на каком Таити!»"}, {"t": "«Усы, лапы и хвост — вот мои документы!»"}, {"t": "«А в попугаях-то я гораздо длиннее!»"}, {"t": "«Я почему вредный был? Потому что у меня велосипеда не было!»"}, {"t": "«У меня есть мысль, и я её думаю!»"}, {"t": "«Неправильно ты, дядя Фёдор, бутерброд ешь!»"}, {"t": "«Безвозмездно, то есть даром!»"}, {"t": "«Птица Говорун отличается умом и сообразительностью»", "d": "«Тайна третьей планеты»"}], "own": "Свой вариант"}]}, {"title": "Прошлое и современность", "qs": [{"n": 9, "q": "Какой мультфильм ваш самый любимый?", "opts": [{"t": "«Ну, погоди!»"}, {"t": "«Трое из Простоквашино»"}, {"t": "«Винни-Пух»"}, {"t": "«Бременские музыканты»"}, {"t": "«Крокодил Гена»"}, {"t": "«Малыш и Карлсон»"}, {"t": "«38 попугаев»"}, {"t": "«Тайна третьей планеты»"}, {"t": "«Жил-был пёс»"}, {"t": "«Ёжик в тумане»"}, {"t": "«Котёнок по имени Гав»"}, {"t": "«Умка»"}], "own": "Другой мультфильм (укажите)"}, {"n": 10, "q": "Какой мультфильм из вашего детства вы бы обязательно показали современным детям?", "opts": [{"t": "«Трое из Простоквашино»"}, {"t": "«Крокодил Гена»"}, {"t": "«Винни-Пух»"}, {"t": "«Ну, погоди!»"}, {"t": "«Малыш и Карлсон»"}, {"t": "«Бременские музыканты»"}, {"t": "«Тайна третьей планеты»"}, {"t": "«Ёжик в тумане»"}, {"t": "«Котёнок по имени Гав»"}, {"t": "«Жил-был пёс»"}, {"t": "«38 попугаев»"}, {"t": "«Умка»"}, {"t": "«Снежная королева»"}], "own": "Свой вариант"}, {"n": 11, "q": "Какой мультфильм вы считаете по-настоящему семейным?", "opts": [{"t": "«Простоквашино»", "d": "семейные отношения, самостоятельность и домашний уют"}, {"t": "«Чебурашка»", "d": "дружба, забота и ощущение, что семья — это те, кто рядом"}, {"t": "«Винни-Пух»", "d": "добрый юмор, дружба и маленькие радости"}, {"t": "«Малыш и Карлсон»", "d": "детские мечты, отношения с близкими и потребность во внимании"}, {"t": "«Умка»", "d": "материнская любовь, забота и первые шаги к самостоятельности"}, {"t": "«Котёнок по имени Гав»", "d": "дружба, доверие и поддержка"}, {"t": "«Бременские музыканты»", "d": "любовь, приключения и умение быть вместе"}, {"t": "«38 попугаев»", "d": "дружба, взаимопонимание и любознательность"}, {"t": "«Варежка»", "d": "детские мечты, одиночество и потребность в тепле"}, {"t": "«Оранжевая корова»", "d": "современные истории о семье, отношениях и взрослении"}, {"t": "«Приключения Пети и Волка»", "d": "юмор, хулиганство и приключения"}], "own": "Свой вариант"}, {"n": 12, "q": "Какой мультфильм, на ваш взгляд, больше всего объединяет разные поколения?", "opts": [{"t": "«Ну, погоди!»", "d": "приключения Волка и Зайца, знакомые нескольким поколениям"}, {"t": "«Простоквашино»", "d": "любимые герои, которые продолжают жить и в новых сериях"}, {"t": "«Чебурашка»", "d": "персонаж, знакомый детям, родителям и старшему поколению"}, {"t": "«Винни-Пух»", "d": "юмор и цитаты, которые знают наизусть"}, {"t": "«Бременские музыканты»", "d": "песни, которые поют всей семьёй"}, {"t": "«Малыш и Карлсон»", "d": "история, которую помнят с детства и продолжают пересматривать"}, {"t": "«38 попугаев»", "d": "узнаваемые герои, юмор и крылатые выражения"}, {"t": "«Котёнок по имени Гав»", "d": "добрые истории, понятные и детям, и взрослым"}, {"t": "«Умка»", "d": "трогательная история и колыбельная, знакомая нескольким поколениям"}, {"t": "«Тайна третьей планеты»", "d": "фантастические приключения, интересные детям и взрослым"}, {"t": "«Жил-был пёс»", "d": "мультфильм, юмор которого особенно ценят взрослые"}, {"t": "«Ёжик в тумане»", "d": "история, которую можно воспринимать по-разному в разном возрасте"}], "own": "Свой вариант"}, {"n": 13, "q": "Какие мультфильмы, по вашим наблюдениям, лучше всего понимают современные ученики?", "opts": [{"t": "Советскую классику", "d": "«Простоквашино», «Винни-Пух», «Чебурашка»"}, {"t": "Приключенческие истории", "d": "«Маугли», «Тайна третьей планеты»"}, {"t": "Короткие юмористические мультфильмы", "d": "«Ну, погоди!», «38 попугаев»"}, {"t": "Современные сериалы", "d": "«Оранжевая корова», «Зебра в клеточку»"}, {"t": "Новые версии классических историй", "d": "«Простоквашино», «Ну, погоди! Каникулы»"}, {"t": "Детективные и приключенческие сериалы", "d": "«Тайны Медовой долины», «Чинк — хвостатый детектив»"}, {"t": "Все примерно одинаково"}, {"t": "Всё зависит от возраста учеников"}, {"t": "Не могу оценить"}], "own": "Свой вариант"}, {"n": 14, "q": "Какой мультфильм из вашего детства современные дети понимают хуже всего?", "opts": [{"t": "«Ёжик в тумане»"}, {"t": "«Падал прошлогодний снег»"}, {"t": "«Жил-был пёс»"}, {"t": "«Крылья, ноги и хвосты»"}, {"t": "«Винни-Пух»"}, {"t": "«Тайна третьей планеты»"}, {"t": "«38 попугаев»"}, {"t": "«Пластилиновая ворона»"}, {"t": "«Фильм, фильм, фильм»"}, {"t": "Не замечаю таких мультфильмов"}], "own": "Свой вариант"}, {"n": 15, "q": "Какой мультфильм из вашего детства современные дети неожиданно полюбили?", "opts": [{"t": "«Ну, погоди!»"}, {"t": "«Простоквашино»"}, {"t": "«Крокодил Гена»"}, {"t": "«Котёнок по имени Гав»"}, {"t": "«Винни-Пух»"}, {"t": "«Бременские музыканты»"}, {"t": "«38 попугаев»"}, {"t": "«Умка»"}, {"t": "«Тайна третьей планеты»"}, {"t": "«Малыш и Карлсон»"}, {"t": "Не замечал(а) такого"}], "own": "Свой вариант"}, {"n": 16, "q": "Продолжение какого советского мультфильма вы бы хотели увидеть?", "opts": [{"t": "«Винни-Пух»"}, {"t": "«Бременские музыканты»"}, {"t": "«Тайна третьей планеты»"}, {"t": "«Маугли»"}, {"t": "«Котёнок по имени Гав»"}, {"t": "«38 попугаев»"}, {"t": "«Приключения Буратино»"}, {"t": "«Малыш и Карлсон»"}, {"t": "«Жил-был пёс»"}, {"t": "«Каникулы Бонифация»"}, {"t": "Не хотел(а) бы новых продолжений классических мультфильмов"}], "own": "Свой вариант"}]}, {"title": "Мультфильмы и воспитание", "qs": [{"n": 17, "q": "Какой мультфильм вы считаете наиболее полезным для воспитания детей?", "opts": [{"t": "«Чебурашка»", "d": "дружба, принятие и взаимопомощь"}, {"t": "«Простоквашино»", "d": "самостоятельность и ответственность"}, {"t": "«Котёнок по имени Гав»", "d": "дружба и преодоление страхов"}, {"t": "«Умка»", "d": "любовь и забота о близких"}, {"t": "«Винни-Пух»", "d": "дружба и взаимовыручка"}, {"t": "«Маугли»", "d": "смелость, верность и ответственность"}, {"t": "«Оранжевая корова»", "d": "семейные отношения и доброта"}, {"t": "«Приключения Пети и Волка»", "d": "юмор, хулиганство и приключения"}, {"t": "«38 попугаев»", "d": "любознательность и умение общаться"}, {"t": "«Цветик-семицветик»", "d": "доброта и бескорыстная помощь"}, {"t": "«Варежка»", "d": "дружба, забота и стремление быть понятым"}], "own": "Свой вариант"}, {"n": 18, "q": "Чему мультфильмы могут научить лучше учебника?", "opts": [{"t": "Дружбе и взаимопомощи"}, {"t": "Доброте и сочувствию"}, {"t": "Самостоятельности"}, {"t": "Умению справляться с эмоциями"}, {"t": "Смелости и уверенности"}, {"t": "Уважению к другим"}, {"t": "Разрешению конфликтов"}, {"t": "Любознательности и творческому мышлению"}, {"t": "Ответственности за свои поступки"}, {"t": "Умению принимать различия между людьми"}], "own": "Свой вариант"}, {"n": 19, "q": "Для каких образовательных задач мультфильмы наиболее полезны?", "opts": [{"t": "Развитие речи и словарного запаса"}, {"t": "Изучение иностранных языков и русского как иностранного"}, {"t": "Объяснение сложных тем простым языком"}, {"t": "Развитие эмоционального интеллекта"}, {"t": "Знакомство с культурой и традициями"}, {"t": "Повышение интереса к занятиям"}, {"t": "Развитие воображения и творческого мышления"}, {"t": "Обсуждение нравственных вопросов"}, {"t": "Развитие критического мышления"}, {"t": "Не считаю мультфильмы полезным учебным инструментом"}], "own": "Свой вариант"}, {"n": 20, "q": "Какие сложные темы легче обсуждать с детьми на примере мультфильмов?", "opts": [{"t": "Одиночество и поиск друзей"}, {"t": "Конфликты"}, {"t": "Страхи и тревоги"}, {"t": "Дружба и предательство"}, {"t": "Отношения с родителями"}, {"t": "Неудачи и ошибки"}, {"t": "Потеря близких"}, {"t": "Принятие тех, кто отличается от остальных"}, {"t": "Ответственность за поступки"}, {"t": "Умение признавать свою неправоту"}], "own": "Свой вариант"}, {"n": 21, "q": "Могут ли отрицательные мультгерои научить детей хорошему?", "opts": [{"t": "Да, на плохих примерах тоже можно учиться"}, {"t": "Да, если потом обсудить поступки персонажей"}, {"t": "Да, но с учётом возраста детей"}, {"t": "Зависит от мультфильма и ситуации"}, {"t": "Скорее нет, дети могут копировать поведение персонажей"}, {"t": "Нет, лучше показывать положительные примеры"}, {"t": "Затрудняюсь ответить"}], "own": "Свой вариант"}]}, {"title": "Мультики для учёбы", "qs": [{"n": 22, "q": "Какой мультфильм лучше всего подходит для использования на уроках?", "opts": [{"t": "«38 попугаев»", "d": "логика, измерения, мышление"}, {"t": "«В стране невыученных уроков»", "d": "учебные ошибки и ответственность"}, {"t": "«Простоквашино»", "d": "диалоги, общение, повседневная жизнь"}, {"t": "«Винни-Пух»", "d": "речь, юмор, игра слов"}, {"t": "«Фильм, фильм, фильм»", "d": "творчество и командная работа"}, {"t": "«Котёнок по имени Гав»", "d": "эмоции, дружба, общение"}, {"t": "«Оранжевая корова»", "d": "семейные отношения и повседневные ситуации"}, {"t": "«Приключения Пети и Волка»", "d": "знание русского фольклора и сказок"}, {"t": "«Тайны Медовой долины»", "d": "логика и поиск решений"}, {"t": "«Тайна третьей планеты»", "d": "воображение, фантастика, исследование мира"}, {"t": "«Маугли»", "d": "взаимоотношения, выбор и ответственность"}, {"t": "«Чемпионы»", "d": "интерес к спорту и вовлечение в спортивные занятия"}], "own": "Свой вариант"}]}];
+const BL_IMG = ['02', '06', '19', '09', '10'];
+const BL_SHORT = ['Герои в школе', 'Цитата дня', 'Прошлое и сейчас', 'Воспитание', 'Для учёбы'];
+const PRAISE = ['Урок прошёл на отлично!', 'Вот это скорость! Так держать.', 'Пять с плюсом, идём дальше!', 'Мультяшные герои вами гордятся.', 'Финишная прямая, вы почти у цели!'];
+const QS = [];
+DATA.forEach((b, bi) => b.qs.forEach((q) => QS.push({ ...q, b: bi })));
+const TOTAL = QS.length, QTXT = TOTAL + ' ' + ((n) => { const a = n % 10, b = n % 100; return a === 1 && b !== 11 ? 'вопрос' : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'вопроса' : 'вопросов'; })(TOTAL);
+const TEAS = 'Кто из мультгероев мог бы стать идеальным учителем? Кому поставить двойку за поведение, но пятёрку за смекалку? Какая мультяшная цитата ваша любимая? Способны ли мультяшные злодеи научить добру?';
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const $ = (s) => document.querySelector(s);
+const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const PER = 4;
+const QIMG = { 1: '16', 2: '05', 3: '02', 4: '04', 5: '18' };   /* big picture per question of block 1 */
+const qImg = (q) => QIMG[q.n] || BL_IMG[q.b];
+const st = { view: 'intro', i: 0, ans: {}, page: {}, ownOpen: {}, cele: new Set(), celeB: 0, fromReview: false, busy: false, justB: -1, about: { age: '', subj: '', region: '' } };
+const answered = (q) => !!st.ans[q.n];
+const blockDone = (bi) => QS.filter((q) => q.b === bi).every(answered);
+const countAnswered = () => QS.filter(answered).length;
+const scrollTop = () => { try { window.scrollTo(0, 0); } catch (e) {} };
+
+/* ---------- shared pieces ---------- */
+function title() {
+  const LT = ['#E5412D|#FFFFFF', '#FFD23F|#1B1B2F', '#7CC6FF|#1B1B2F', '#FF8FB1|#1B1B2F', '#FFFFFF|#E5412D', '#FF8A2B|#1B1B2F', '#8FE3C3|#1B1B2F', '#FFD23F|#1B1B2F', '#7CC6FF|#1B1B2F', '#E5412D|#FFFFFF', '#FF8FB1|#1B1B2F'];
+  const ROT = [-5, 3, -2, 5, -4, 2, -3, 4, -2, 3, -4], DY = [0, 4, -3, 3, -4, 3, -2, 2, -3, 3, -1];
+  const letters = [...'МУЛЬТФИЛЬМЫ'].map((ch, i) => { const [c, f] = LT[i].split('|'); return `<span class="ltr" style="--c:${c};--fc:${f};--r:${ROT[i]}deg;--y:${DY[i]}px">${ch}</span>`; }).join('');
+  return `<h1 class="cut" aria-label="Мультфильмы глазами учителей"><span class="cut-l" aria-hidden="true">${letters}</span><span class="cut-sw" aria-hidden="true"><span class="cut-s">глазами учителей</span></span></h1>`;
+}
+
+/* top: big picture of every block with its name; finished blocks light up */
+function tracker() {
+  const cb = (st.view === 'review' || st.view === 'about') ? -1 : (st.view === 'cele' ? st.celeB : QS[st.i].b);
+  const items = DATA.map((b, bi) => {
+    const d = QS.filter((q) => q.b === bi).every(answered);
+    return `<li class="bt${d ? ' done' : ''}${bi === cb ? ' cur' : ''}${bi === st.justB ? ' just' : ''}"><span class="tp"><img src="img/${BL_IMG[bi]}.jpg" alt=""><span class="tk" aria-hidden="true">✓</span></span><span class="tn">${esc(BL_SHORT[bi])}</span></li>`;
+  }).join('');
+  return `<ol class="btiles" aria-label="Блоки">${items}</ol>`;
+}
+
+/* ---------- intro (first screen) ---------- */
+function viewIntro() {
+  const rot = [-2.2, 1.8, -1.2, 2.2, -1.8], pc = ['#E5412D', '#2F6BFF', '#FF8A2B', '#FFD23F', '#E5412D'];
+  const tags = DATA.map((b, i) => `<li class="tag${i === 0 ? ' cur' : ''}" style="--r:${rot[i]}deg;--pc:${pc[i]}"><i class="pushpin"></i><img src="img/${BL_IMG[i]}.jpg" alt="" loading="lazy"><h3>${i + 1}. ${esc(b.title)}</h3></li>`).join('');
+  return `<section class="v" aria-label="Первый экран">
+    <div class="toplogos"><img src="img/obrsoyuz.png" alt="Обрсоюз"><img src="img/soyuzmultfilm90.png" alt="90 лет «Союзмультфильму»"><img class="iv" src="img/institut.png" alt="Институт воспитания"></div>
+    ${title()}
+    <div class="note y compact"><i class="pushpin" style="--pc:#2F6BFF"></i>
+      <p class="lead"><b>28 октября</b> — Международный день анимации! Самое время вспомнить любимые мультфильмы!</p><p class="teas">${TEAS}</p></div>
+    <ol class="tags six">${tags}<li class="gocell"><button type="button" class="mega gob" data-act="start"><span class="rk"><i>🚀</i></span><span class="p1">Поехали!</span></button></li></ol></section>`;
+}
+
+/* ---------- question ---------- */
+function viewQuestion() {
+  const q = QS[st.i], a = st.ans[q.n];
+  const pages = Math.ceil(q.opts.length / PER), pg = (((st.page[q.n] || 0) % pages) + pages) % pages, from = pg * PER;
+  const idxs = q.opts.map((o, k) => k).slice(from, from + PER);
+  const LET = ['А', 'Б', 'В', 'Г'];
+  const opts = idxs.map((k, n) => { const o = q.opts[k], sel = a && a.k === k;
+    return `<li><button type="button" class="opt${sel ? ' sel' : ''}" data-o="${k}" aria-pressed="${!!sel}"><span class="lt">${sel ? '✓' : LET[n]}</span><span class="tx"><span class="ot">${esc(o.t)}</span>${o.d ? `<span class="od">${esc(o.d)}</span>` : ''}</span></button></li>`; }).join('');
+  const picked = a && a.k !== undefined && !idxs.includes(a.k) ? `<p class="picked">✓ Вы выбрали: <b>${esc(q.opts[a.k].t)}</b></p>` : '';
+  const dots = Array.from({ length: pages }, (_, k) => `<i class="${k === pg ? 'on' : ''}"></i>`).join('');
+  const pager = pages > 1 ? `<div class="pager"><div class="pdots" aria-hidden="true">${dots}</div><div class="prow"><button type="button" class="pgb" data-pg="-1" aria-label="Предыдущие варианты">‹</button><button type="button" class="pgmore" data-pg="1"><span class="pa">↻</span><span class="pt">Смотреть ещё<small>варианты · сейчас ${from + 1}–${from + idxs.length} из ${q.opts.length}</small></span><span class="pr">›</span></button></div></div>` : '';
+  const ownSel = a && a.text !== undefined, ownOpen = ownSel || st.ownOpen[q.n];
+  const own = `<li><button type="button" class="opt own${ownSel ? ' sel' : ''}" data-own="1" aria-pressed="${!!ownSel}"><span class="lt">${ownSel ? '✓' : '✎'}</span><span class="tx"><span class="ot">${esc(q.own)}</span></span></button>
+    ${ownOpen ? `<div class="ownbox"><textarea id="ownt" placeholder="Напишите здесь…" maxlength="400">${esc(ownSel ? a.text : '')}</textarea><button type="button" class="smallgo" id="owng" data-ownok="1" ${ownSel ? '' : 'disabled'}>Готово ›</button></div>` : ''}</li>`;
+  const last = st.i === TOTAL - 1;
+  const inB = QS.filter((x) => x.b === q.b), pos = inB.indexOf(q) + 1;
+  const pips = inB.map((x) => `<i class="pip${answered(x) ? ' ok' : ''}${x === q ? ' now' : ''}"></i>`).join('');
+  return `<section class="v q" aria-label="Вопрос ${st.i + 1} из ${TOTAL}">
+    ${tracker()}
+    <div class="qcard">
+      <div class="qbadge"><span class="bd">Вопрос ${pos} из ${inB.length}</span></div>
+      <div class="pips">${pips}</div>
+      <h2 class="qtext">${esc(q.q)}</h2>
+      <p class="qhint">Выберите один ответ</p>
+      <ul class="opts">${opts}${own}</ul>
+      ${picked}${pager}
+    </div>
+    <div class="qnav"><button type="button" class="nb sq" data-back="1" aria-label="Назад">←</button><button type="button" class="nb fwd" data-fwd="1" ${answered(q) ? '' : 'disabled'}>${last ? 'Закончить' : 'Далее →'}</button></div></section>`;
+}
+
+/* ---------- celebration after a block ---------- */
+function viewCele() {
+  const b = st.celeB, nxt = DATA[b + 1], left = TOTAL - countAnswered();
+  return `<section class="v q" aria-label="Блок пройден">
+    ${tracker()}
+    <div class="cele"><img src="img/${BL_IMG[b]}.jpg" alt="">
+      <p class="big">Блок ${b + 1} пройден! 🎉</p><p class="praise">${esc(PRAISE[b % PRAISE.length])}</p>
+      <p class="left">${nxt ? `Дальше: «${esc(nxt.title)}». Осталось вопросов: ${left}.` : 'Это был последний блок. Остался совсем маленький вопросик о вас — по желанию.'}</p>
+      <button type="button" class="nb fwd" data-cont="1">${nxt ? 'Дальше ›' : 'Ещё пара слов о вас ›'}</button></div></section>`;
+}
+
+/* ---------- about (optional) ---------- */
+const AGES = ['до 30', '30–39', '40–49', '50–59', '60 и старше'];
+const SUBJ = ['Начальные классы', 'Русский язык и литература', 'Иностранные языки', 'Математика и информатика', 'Естественные науки', 'История и обществознание', 'Другое'];
+const REGIONS = ['Москва','Санкт-Петербург','Севастополь','Республика Адыгея','Республика Алтай','Республика Башкортостан','Республика Бурятия','Республика Дагестан','Республика Ингушетия','Кабардино-Балкарская Республика','Республика Калмыкия','Карачаево-Черкесская Республика','Республика Карелия','Республика Коми','Республика Крым','Республика Марий Эл','Республика Мордовия','Республика Саха (Якутия)','Республика Северная Осетия — Алания','Республика Татарстан','Республика Тыва','Удмуртская Республика','Республика Хакасия','Чеченская Республика','Чувашская Республика','Алтайский край','Забайкальский край','Камчатский край','Краснодарский край','Красноярский край','Пермский край','Приморский край','Ставропольский край','Хабаровский край','Амурская область','Архангельская область','Астраханская область','Белгородская область','Брянская область','Владимирская область','Волгоградская область','Вологодская область','Воронежская область','Ивановская область','Иркутская область','Калининградская область','Калужская область','Кемеровская область','Кировская область','Костромская область','Курганская область','Курская область','Ленинградская область','Липецкая область','Магаданская область','Московская область','Мурманская область','Нижегородская область','Новгородская область','Новосибирская область','Омская область','Оренбургская область','Орловская область','Пензенская область','Псковская область','Ростовская область','Рязанская область','Самарская область','Саратовская область','Сахалинская область','Свердловская область','Смоленская область','Тамбовская область','Тверская область','Томская область','Тульская область','Тюменская область','Ульяновская область','Челябинская область','Ярославская область','Еврейская автономная область','Ненецкий автономный округ','Ханты-Мансийский автономный округ','Чукотский автономный округ','Ямало-Ненецкий автономный округ','Донецкая Народная Республика','Луганская Народная Республика','Запорожская область','Херсонская область','Другая страна'];
+function viewAbout() {
+  const chips = (key, arr) => arr.map((v) => `<button type="button" class="chip${st.about[key] === v ? ' on' : ''}" data-ab="${key}" data-v="${esc(v)}" aria-pressed="${st.about[key] === v}">${esc(v)}</button>`).join('');
+  return `<section class="v q" aria-label="О вас">
+    ${tracker()}
+    <div class="qcard abt">
+      <div class="qbadge"><span class="bd">Почти готово!</span></div>
+      <h2 class="qtext">Немного о вас</h2>
+      <p class="qhint">Можно ответить на всё сразу, на что-то одно или пропустить</p>
+      <h3 class="ah">Сколько вам лет?</h3><div class="chips">${chips('age', AGES)}</div>
+      <h3 class="ah">Что преподаёте?</h3><div class="chips">${chips('subj', SUBJ)}</div>
+      <h3 class="ah">Ваш регион</h3>
+      <input id="reg" class="reg" list="regl" placeholder="Начните вводить название" autocomplete="off" value="${esc(st.about.region)}"><datalist id="regl">${REGIONS.map((r) => `<option value="${esc(r)}">`).join('')}</datalist>
+    </div>
+    <div class="qnav"><button type="button" class="nb fwd" data-abdone="1">Готово ›</button></div>
+    <button type="button" class="more" data-abdone="1">Пропустить</button></section>`;
+}
+
+/* ---------- review ---------- */
+const ansText = (q) => { const a = st.ans[q.n]; if (!a) return { t: 'Нет ответа', d: '' }; return a.text !== undefined ? { t: a.text, d: q.own + ' (ваш ответ)' } : { t: q.opts[a.k].t, d: q.opts[a.k].d }; };
+function viewReview() {
+  const items = DATA.map((b, bi) => `<h3>Блок ${bi + 1}. ${esc(b.title)}</h3>` + QS.map((q, qi) => ({ q, qi })).filter((x) => x.q.b === bi).map(({ q, qi }) => { const r = ansText(q);
+    return `<li class="ri"><p class="rq">${q.n}. ${esc(q.q)}</p><p class="ra">${esc(r.t)}${r.d ? `<small>${esc(r.d)}</small>` : ''}</p><button type="button" data-edit="${qi}">Изменить</button></li>`; }).join('')).join('');
+  return `<section class="v q" aria-label="Проверка ответов">
+    ${tracker()}
+    <div class="thanks"><p class="big">С Днём анимации! 🎉</p><p class="ts">Спасибо, что поделились любимыми мультфильмами и героями.</p>
+      <p class="tq">А на прощание — улыбка</p>
+      <figure class="enot"><img src="img/enot.jpg" alt="Крошка Енот и Лягушонок"><figcaption><b class="lyr" id="lyr"></b><small>Песня «Улыбка» из мультфильма «Крошка Енот»</small></figcaption></figure></div>
+    <details class="revbox"><summary>Посмотреть и изменить мои ответы</summary><ul class="rev">${items}</ul></details>
+    <div class="qnav"><button type="button" class="nb fwd" data-copy="1">Скопировать ответы</button></div>
+    <p class="note-s" id="sendst">${st.sent === 'ok' ? 'Ваши ответы отправлены организаторам. Спасибо!' : st.sent === 'err' ? 'Не удалось отправить ответы. Проверьте интернет и нажмите «Отправить ещё раз».' : 'Отправляем ваши ответы…'}</p>
+    ${st.sent === 'err' ? '<div class="qnav"><button type="button" class="nb fwd" data-resend="1">Отправить ещё раз</button></div>' : ''}
+    <button type="button" class="more" data-restart="1">Пройти заново</button></section>`;
+}
+
+function render() {
+  document.body.dataset.v = 'a';
+  $('#app').innerHTML = st.view === 'intro' ? viewIntro() : st.view === 'quiz' ? viewQuestion() : st.view === 'cele' ? viewCele() : st.view === 'about' ? viewAbout() : viewReview();
+  st.justB = -1;
+}
+
+/* ---------- flow ---------- */
+function confetti() {
+  if (reduce) return;
+  const cols = ['#E5412D', '#FFD23F', '#7CC6FF', '#FF8FB1', '#8FE3C3', '#FF8A2B', '#FFFFFF'];
+  for (let k = 0; k < 70; k++) {
+    const e = document.createElement('i'); e.className = 'cf';
+    e.style.left = (Math.random() * 100) + 'vw'; e.style.background = cols[k % cols.length];
+    e.style.setProperty('--d', (1.8 + Math.random() * 1.6) + 's'); e.style.setProperty('--w', (Math.random() * .5) + 's');
+    e.style.setProperty('--x', (Math.random() * 160 - 80) + 'px'); e.style.setProperty('--r', (Math.random() * 900 - 450) + 'deg');
+    e.style.width = (6 + Math.random() * 8) + 'px';
+    document.body.appendChild(e); setTimeout(() => e.remove(), 4200);
+  }
+}
+function goNext() {
+  const q = QS[st.i];
+  if (st.fromReview) { st.fromReview = false; st.view = 'review'; render(); scrollTop(); if (st.dirty) sendAnswers(); return; }
+  const blockEnd = st.i === TOTAL - 1 || QS[st.i + 1].b !== q.b;
+  if (blockEnd && !st.cele.has(q.b) && blockDone(q.b)) { st.cele.add(q.b); st.view = 'cele'; st.celeB = q.b; st.justB = q.b; render(); scrollTop(); confetti(); return; }
+  if (st.i === TOTAL - 1) { st.view = 'about'; render(); scrollTop(); return; }
+  st.i++; render(); scrollTop();
+}
+function choose(patch) {
+  if (st.busy) return;
+  const q = QS[st.i]; st.ans[q.n] = patch; st.busy = true; if (st.sent) st.dirty = true;
+  render();                                          /* highlights the choice in its colour */
+  setTimeout(() => { st.busy = false; goNext(); }, 450);
+}
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxOKzzq8dmx4qOaHTPCLRsU6Op6eHatBiGKmeG7UuWfBl97OTstMQ3NDbnFshMER7-axA/exec';
+function sendAnswers() {
+  const headers = [], values = [];
+  QS.forEach((q) => { headers.push(q.n + '. ' + q.q); const a = st.ans[q.n]; values.push(!a ? '' : a.text !== undefined ? 'Свой ответ: ' + a.text : q.opts[a.k].t); });
+  headers.push('Возраст', 'Предмет', 'Регион'); values.push(st.about.age, st.about.subj, st.about.region);
+  st.sent = 'wait'; st.dirty = false;
+  fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ headers, values }) })
+    .then(() => { st.sent = 'ok'; }, () => { st.sent = 'err'; })
+    .finally(() => { if (st.view !== 'review') return; if (st.sent === 'err') { render(); return; } const n = $('#sendst'); if (n) n.textContent = 'Ваши ответы отправлены организаторам. Спасибо!'; const r = document.querySelector('[data-resend]'); if (r) r.closest('.qnav').remove(); });
+}
+function copyAnswers() {
+  let t = 'Мультфильмы глазами учителей\n';
+  DATA.forEach((b, bi) => { t += `\nБлок ${bi + 1}. ${b.title}\n`; QS.filter((q) => q.b === bi).forEach((q) => { const r = ansText(q); t += `${q.n}. ${q.q}\n   → ${r.t}${r.d ? ' (' + r.d + ')' : ''}\n`; }); });
+  const A = st.about; if (A.age || A.subj || A.region) t += `\nО респонденте\n${A.age ? 'Возраст: ' + A.age + '\n' : ''}${A.subj ? 'Предмет: ' + A.subj + '\n' : ''}${A.region ? 'Регион: ' + A.region + '\n' : ''}`;
+  const done = () => toast('Ответы скопированы');
+  const fb = () => { const ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) { toast('Не получилось скопировать. Выделите ответы вручную.'); } ta.remove(); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, fb); else fb();
+}
+
+let toastTimer = 0;
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 3200); }
+
+document.addEventListener('click', (e) => {
+  const t = e.target.closest('button'); if (!t) return;
+  const q = st.view === 'quiz' ? QS[st.i] : null;
+  if (t.dataset.act === 'start') { const first = QS.findIndex((x) => !answered(x)); st.i = first < 0 ? 0 : first; st.view = 'quiz'; render(); scrollTop(); }
+  else if (t.dataset.o !== undefined && q) choose({ k: Number(t.dataset.o) });
+  else if (t.dataset.own && q) { st.ownOpen[q.n] = true; render(); const ta = $('#ownt'); if (ta) ta.focus(); }
+  else if (t.dataset.ownok && q) { const v = ($('#ownt').value || '').trim(); if (v) choose({ text: v }); }
+  else if (t.dataset.pg && q) { st.page[q.n] = (st.page[q.n] || 0) + Number(t.dataset.pg); render(); }
+  else if (t.dataset.back) { if (st.fromReview) { st.fromReview = false; st.view = 'review'; } else if (st.i === 0) st.view = 'intro'; else st.i--; render(); scrollTop(); }
+  else if (t.dataset.fwd && q && answered(q)) goNext();
+  else if (t.dataset.cont) { if (st.celeB < DATA.length - 1) { st.i = QS.findIndex((x) => x.b === st.celeB + 1); st.view = 'quiz'; } else st.view = 'about'; render(); scrollTop(); }
+  else if (t.dataset.edit !== undefined) { st.i = Number(t.dataset.edit); st.fromReview = true; st.view = 'quiz'; render(); scrollTop(); }
+  else if (t.dataset.ab) { const k = t.dataset.ab, v = t.dataset.v; st.about[k] = st.about[k] === v ? '' : v; render(); }
+  else if (t.dataset.abdone) { st.view = 'review'; render(); scrollTop(); confetti(); if (!st.sent || st.dirty) sendAnswers(); }
+  else if (t.dataset.resend) sendAnswers();
+  else if (t.dataset.copy) copyAnswers();
+  else if (t.dataset.restart) { st.sent = ''; st.dirty = false; st.ans = {}; st.page = {}; st.ownOpen = {}; st.cele = new Set(); st.about = { age: '', subj: '', region: '' }; st.i = 0; st.view = 'intro'; render(); scrollTop(); }
+});
+document.addEventListener('input', (e) => {
+  if (e.target.id === 'reg') { st.about.region = e.target.value.trim(); return; }
+  if (e.target.id !== 'ownt') return;
+  const g = $('#owng'); if (g) g.disabled = !e.target.value.trim();
+});
+render();
+</script>
+</body>
+</html>
